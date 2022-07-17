@@ -8,6 +8,7 @@
     "cart-e2e": "apps/cart-e2e",
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
+    "shared-auth": "libs/shared/auth",
     "shop": "apps/shop",
     "shop-e2e": "apps/shop-e2e",
     "ui": "libs/ui"
