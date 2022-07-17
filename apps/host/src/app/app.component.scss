@@ -1,0 +1,55 @@
+.host-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+
+  .host-body {
+    background-color: #efefef;
+  }
+}
+
+.sidebar {
+  border: solid 1px #ddd;
+}
+
+.menu {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: 280px;
+  padding: 6px 0;
+
+  .menu-item {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+
+    user-select: none;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+
+    &:hover {
+      background-color: rgb(208, 208, 208);
+    }
+
+    &:active,
+    &.active {
+      background-color: rgb(208, 208, 208);
+    }
+  }
+}
+
+// For showing the examples
+::ng-deep .mat-card {
+  margin: 2rem !important;
+  max-width: 600px !important;
+}

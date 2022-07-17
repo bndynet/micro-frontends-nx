@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 
 import { RemoteEntryComponent } from './entry.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
+import { UiModule } from '@mfe/ui';
 
 @NgModule({
   declarations: [RemoteEntryComponent, NxWelcomeComponent],
   imports: [
     CommonModule,
+    UiModule,
     RouterModule.forChild([
       {
         path: '',

@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-/* eslint-disable */
-
 @Component({
   selector: 'mfe-nx-welcome',
-  template: `<h1>About</h1>`,
-  styles: [],
+  template: `<mfe-welcome title="About" bg="#0d5625"></mfe-welcome>`,
   encapsulation: ViewEncapsulation.None,
 })
 export class NxWelcomeComponent implements OnInit {

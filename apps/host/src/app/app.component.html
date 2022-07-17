@@ -1,8 +1,42 @@
-<ul class="remote-menu">
-  <li><a routerLink="/">Home</a></li>
-
-  <li><a routerLink="shop">Shop</a></li>
-  <li><a routerLink="cart">Cart</a></li>
-  <li><a routerLink="about">About</a></li>
-</ul>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="host-container">
+  <mat-sidenav mode="side" class="sidebar" opened>
+    <div class="menu" cdkMenu>
+      <button
+        class="menu-item"
+        routerLink="/"
+        routerLinkActive="active"
+        cdkMenuItem
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </button>
+      <button
+        class="menu-item"
+        routerLink="shop"
+        routerLinkActive="active"
+        cdkMenuItem
+      >
+        Shop
+      </button>
+      <button
+        class="menu-item"
+        routerLink="cart"
+        routerLinkActive="active"
+        cdkMenuItem
+      >
+        Cart
+      </button>
+      <button
+        class="menu-item"
+        routerLink="about"
+        routerLinkActive="active"
+        cdkMenuItem
+      >
+        About
+      </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="host-body">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

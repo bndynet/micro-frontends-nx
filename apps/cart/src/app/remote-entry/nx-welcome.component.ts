@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-/* eslint-disable */
-
 @Component({
   selector: 'mfe-nx-welcome',
-  template: `<h1>Cart</h1>`,
+  template: `<mfe-welcome title="Cart" bg="#21247c"></mfe-welcome>`,
   styles: [],
   encapsulation: ViewEncapsulation.None,
 })
