@@ -9,6 +9,7 @@
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
     "shop": "apps/shop",
-    "shop-e2e": "apps/shop-e2e"
+    "shop-e2e": "apps/shop-e2e",
+    "ui": "libs/ui"
   }
 }
