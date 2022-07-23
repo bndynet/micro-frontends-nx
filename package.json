@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve --devRemotes=about,cart,shop",
+    "start": "nx serve --devRemotes=about,cart,shop,login",
     "build": "nx build",
     "test": "nx test",
     "postinstall": "ngcc --properties es2020 browser module main"

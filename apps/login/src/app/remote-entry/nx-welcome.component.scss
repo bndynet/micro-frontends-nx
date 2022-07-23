@@ -1,0 +1,16 @@
+.form {
+  width: 400px;
+  margin: 2rem auto;
+}
+h1 {
+  text-align: center;
+}
+input,
+button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  height: 36px;
+}

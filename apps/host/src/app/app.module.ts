@@ -9,6 +9,7 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UiModule } from '@mfe/ui';
+import { DataModule } from '@mfe/data';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -17,6 +18,7 @@ import { UiModule } from '@mfe/ui';
     BrowserModule,
     MaterialModule,
     UiModule,
+    DataModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
@@ -39,6 +41,11 @@ import { UiModule } from '@mfe/ui';
         {
           path: '',
           component: NxWelcomeComponent,
+        },
+        {
+          path: 'login',
+          loadChildren: () =>
+            import('login/Module').then((m) => m.RemoteEntryModule),
         },
       ],
       { initialNavigation: 'enabledBlocking' }

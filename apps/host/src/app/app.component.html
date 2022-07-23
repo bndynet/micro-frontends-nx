@@ -1,5 +1,10 @@
 <mat-sidenav-container class="host-container">
   <mat-sidenav mode="side" class="sidebar" opened>
+    <h3 *ngIf="userInfo$ | async as userInfo">
+      Hi {{ userInfo.username }}.
+      <br />
+      <small><a (click)="logout()">Log out</a></small>
+    </h3>
     <div class="menu" cdkMenu>
       <button
         class="menu-item"
@@ -9,14 +14,6 @@
         [routerLinkActiveOptions]="{ exact: true }"
       >
         Home
-      </button>
-      <button
-        class="menu-item"
-        routerLink="shop"
-        routerLinkActive="active"
-        cdkMenuItem
-      >
-        Shop
       </button>
       <button
         class="menu-item"
@@ -33,6 +30,14 @@
         cdkMenuItem
       >
         About
+      </button>
+      <button
+        class="menu-item"
+        routerLink="shop"
+        routerLinkActive="active"
+        cdkMenuItem
+      >
+        Shop 🔒
       </button>
     </div>
   </mat-sidenav>

@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mfe/shared/auth": ["libs/shared/auth/src/index.ts"],
+      "@mfe/data": ["libs/data/src/index.ts"],
       "@mfe/ui": ["libs/ui/src/index.ts"]
     }
   },

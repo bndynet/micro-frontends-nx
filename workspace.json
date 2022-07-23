@@ -6,9 +6,11 @@
     "about-e2e": "apps/about-e2e",
     "cart": "apps/cart",
     "cart-e2e": "apps/cart-e2e",
+    "data": "libs/data",
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
-    "shared-auth": "libs/shared/auth",
+    "login": "apps/login",
+    "login-e2e": "apps/login-e2e",
     "shop": "apps/shop",
     "shop-e2e": "apps/shop-e2e",
     "ui": "libs/ui"

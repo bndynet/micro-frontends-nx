@@ -11,6 +11,19 @@
   }
 }
 
+h3 {
+  text-align: center;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: #eee;
+
+  a {
+    font-size: 12px;
+    color: blue;
+    cursor: pointer;
+  }
+}
+
 .sidebar {
   border: solid 1px #ddd;
 }
@@ -20,7 +33,6 @@
   flex-direction: column;
   min-width: 180px;
   max-width: 280px;
-  padding: 6px 0;
 
   .menu-item {
     background-color: transparent;
