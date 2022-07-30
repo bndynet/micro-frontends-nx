@@ -1,6 +1,6 @@
 <mat-sidenav-container class="host-container">
   <mat-sidenav mode="side" class="sidebar" opened>
-    <h3 *ngIf="userInfo$ | async as userInfo">
+    <h3 *ngIf="userInfo">
       Hi {{ userInfo.username }}.
       <br />
       <small><a (click)="logout()">Log out</a></small>

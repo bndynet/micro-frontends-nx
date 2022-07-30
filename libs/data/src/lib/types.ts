@@ -1,3 +1,3 @@
 export interface UserInfo {
-  username: string;
+  username?: string;
 }

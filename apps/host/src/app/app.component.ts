@@ -1,26 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@mfe/data';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthActionTypes, AuthState, getAuthState, logout } from '@mfe/data';
+import { Actions, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mfe-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  public title = 'host';
-  public userInfo$ = this.authService.userInfo$;
+export class AppComponent implements OnInit, OnDestroy {
+  public userInfo?: AuthState;
 
-  constructor(private authService: AuthService) {}
+  private destoryed$ = new Subject<boolean>();
+
+  constructor(private store: Store<AuthState>, private actions$: Actions) {}
 
   ngOnInit(): void {
-    this.userInfo$.subscribe((u) => {
-      if (u) {
-        this.title = u?.username;
+    this.store.select(getAuthState).subscribe((authState: AuthState) => {
+      if (authState.isAuthenticated) {
+        this.userInfo = authState;
       }
+      this.userInfo = undefined;
     });
   }
 
+  ngOnDestroy(): void {
+    this.destoryed$.next(true);
+    this.destoryed$.complete();
+  }
+
   public logout(): void {
-    this.authService.logout();
+    this.store.dispatch(logout());
   }
 }

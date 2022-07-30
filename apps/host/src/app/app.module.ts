@@ -9,7 +9,9 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UiModule } from '@mfe/ui';
-import { DataModule } from '@mfe/data';
+import { AuthGuard, DataModule } from '@mfe/data';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -21,12 +23,15 @@ import { DataModule } from '@mfe/data';
     DataModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     RouterModule.forRoot(
       [
         {
           path: 'shop',
           loadChildren: () =>
             import('shop/Module').then((m) => m.RemoteEntryModule),
+          canActivate: [AuthGuard],
         },
         {
           path: 'cart',

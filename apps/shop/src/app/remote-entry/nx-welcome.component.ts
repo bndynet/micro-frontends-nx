@@ -1,36 +1,32 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@mfe/data';
-import { distinctUntilChanged } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthState, getAuthState, logout } from '@mfe/data';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'mfe-nx-welcome',
-  template: `<div *ngIf="userInfo$ | async as userInfo">
-    <mfe-welcome [title]="'Hi ' + userInfo.username" bg="#086978"></mfe-welcome>
+  template: `<div *ngIf="userInfo">
+    <mfe-welcome [title]="'Hi ' + userInfo.username" bg="#086978" [showLogoutButton]="true" (logoutHandler)="logout()"></mfe-welcome>
   </div>`,
 })
 export class NxWelcomeComponent implements OnInit {
-  public isLoggedIn$ = this.authService.isUserLoggedIn$;
-  public userInfo$ = this.authService.userInfo$;
+  public userInfo?: AuthState;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private authService: AuthService
-  ) {}
+    private router: Router, private store: Store<AuthState>) {}
 
   ngOnInit(): void {
-    this.isLoggedIn$
-      .pipe(distinctUntilChanged())
-      .subscribe((loggedIn: boolean) => {
-        // Queue the navigation after initialNavigation blocking is completed
-        setTimeout(() => {
-          if (!loggedIn) {
-            this.router.navigate(['login'], {
-              queryParams: { back: this.router.url },
-            });
-          }
-        });
-      });
+    this.store.select(getAuthState).subscribe((authState: AuthState) => {
+      if (!authState.isAuthenticated) {
+        this.userInfo = undefined;
+        this.router.navigateByUrl('/');
+        return;
+      }
+      this.userInfo = authState;
+    });
+  }
+
+  logout(): void {
+    this.store.dispatch(logout());
   }
 }

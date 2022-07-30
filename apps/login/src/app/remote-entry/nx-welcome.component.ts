@@ -1,6 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '@mfe/data';
+import { AuthActionTypes, AuthService, login, logout } from '@mfe/data';
+import { Actions, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mfe-nx-welcome',
@@ -16,20 +19,47 @@ import { AuthService } from '@mfe/data';
     </ng-template>`,
   styleUrls: ['./nx-welcome.component.scss'],
 })
-export class NxWelcomeComponent implements OnInit {
+export class NxWelcomeComponent implements OnInit, OnDestroy {
   public username: string = '';
   public userInfo$ = this.authService.userInfo$;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService) {}
+  private destoyed$ = new Subject<boolean>();
 
-  ngOnInit(): void {}
+  constructor(
+    private store: Store,
+    private router: Router,
+    private actions: Actions,
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    const returnUrl =
+      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') || '/';
+
+    this.actions
+      .pipe(ofType(AuthActionTypes.LoginSuccess), takeUntil(this.destoyed$))
+      .subscribe(() => {
+        this.router.navigateByUrl(returnUrl);
+      });
+    
+    this.actions
+      .pipe(ofType(AuthActionTypes.Logout), takeUntil(this.destoyed$))
+      .subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destoyed$.next(true);
+    this.destoyed$.complete();
+  }
 
   public login(): void {
-    this.authService.login(this.username, 'p');
-    this.router.navigateByUrl(this.activatedRoute.snapshot.queryParamMap.get('back') || '/');
+    this.store.dispatch(login({ username: this.username, password: 'aaaa' }));
   }
 
   public logout(): void {
-    this.authService.logout();
+    this.store.dispatch(logout());
   }
 }

@@ -1,6 +1,7 @@
 const sharedLibraires = [
-  '@mfe/', // Shared libraries, such as UiModule, please see /tsconfig.base.json paths node
   '@angular/',
+  '@ngrx',
+  '@mfe/', // Shared libraries, such as UiModule, please see /tsconfig.base.json paths node
   'rxjs',
   // Place the shared libraries here
   // 'moment',

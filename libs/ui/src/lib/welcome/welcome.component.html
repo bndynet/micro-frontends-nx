@@ -19,7 +19,8 @@
           </svg>
           <span>{{title | uppercase}}</span>
         </h2>
-        <a href="#commands"> What&apos;s next? </a>
+        <a href="#commands" *ngIf="!showLogoutButton"> What&apos;s next? </a>
+        <a href="javascript:void(0);" (click)="logout()" *ngIf="showLogoutButton">Log out</a>
       </div>
       <div class="logo-container">
         <svg
