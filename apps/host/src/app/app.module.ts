@@ -12,6 +12,8 @@ import { UiModule } from '@mfe/ui';
 import { AuthGuard, DataModule } from '@mfe/data';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -24,6 +26,12 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
     EffectsModule.forRoot([]),
     RouterModule.forRoot(
       [

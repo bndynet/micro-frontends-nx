@@ -20,8 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.store.select(getAuthState).subscribe((authState: AuthState) => {
       if (authState.isAuthenticated) {
         this.userInfo = authState;
+      } else {
+        this.userInfo = undefined;
       }
-      this.userInfo = undefined;
     });
   }
 
