@@ -1,6 +1,8 @@
 const sharedLibraires = [
   '@angular/',
   '@ngrx',
+  '@auth0',
+  'es-cookie',
   '@mfe/', // Shared libraries, such as UiModule, please see /tsconfig.base.json paths node
   'rxjs',
   // Place the shared libraries here

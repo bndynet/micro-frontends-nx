@@ -1,62 +1,91 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthActionTypes, AuthService, login, logout } from '@mfe/data';
+import {
+  Auth0Service,
+  AuthActionTypes,
+  AuthService,
+  AUTH_SERVICE,
+  KEY_BACK_URL,
+  login,
+  loginSuccess,
+  logout,
+} from '@mfe/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
+import { User } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'mfe-nx-welcome',
   template: `<div class="form">
-      <h1 *ngIf="userInfo$ | async as userInfo; else logIn">
-        Hi {{ userInfo.username }}!
+      <h1 *ngIf="user$ | async as user; else logIn">
+        Hi {{ user.name }}!
         <button (click)="logout()">Log out</button>
       </h1>
     </div>
     <ng-template #logIn>
-      <input [(ngModel)]="username" placeholder="User name" />
-      <button (click)="login()">Log in</button>
+      <input
+        [(ngModel)]="username"
+        placeholder="User name"
+        *ngIf="!enableOAuth"
+      />
+      <button (click)="login()">
+        {{ enableOAuth ? 'Log in with Auth0' : 'Log in' }}
+      </button>
     </ng-template>`,
   styleUrls: ['./nx-welcome.component.scss'],
 })
 export class NxWelcomeComponent implements OnInit, OnDestroy {
   public username: string = '';
-  public userInfo$ = this.authService.userInfo$;
+  public enableOAuth = true;
 
-  private destoyed$ = new Subject<boolean>();
+  public user$ = this.auth.user$;
+  public isAuthenticated$ = this.auth.isAuthenticated$;
+
+  private destroyed$ = new Subject<boolean>();
+  private backUrl?: string | null;
 
   constructor(
     private store: Store,
     private router: Router,
-    private actions: Actions,
-    private authService: AuthService,
+    private actions$: Actions,
     private activatedRoute: ActivatedRoute,
-  ) {}
+    @Inject(AUTH_SERVICE) private auth: AuthService<User>
+  ) {
+    this.enableOAuth = this.auth.getId() === Auth0Service.id; //  instanceof Auth0Service does not work here.
+  }
 
   ngOnInit(): void {
-    const returnUrl =
-      this.activatedRoute.snapshot.queryParamMap.get('returnUrl') || '/';
-
-    this.actions
-      .pipe(ofType(AuthActionTypes.LoginSuccess), takeUntil(this.destoyed$))
+    this.backUrl = this.activatedRoute.snapshot.queryParamMap.get(KEY_BACK_URL);
+    this.auth.user$.pipe(takeUntil(this.destroyed$)).subscribe((user: any) => {
+      if (user) {
+        this.store.dispatch(loginSuccess(user));
+      }
+    })
+    this.actions$
+      .pipe(ofType(AuthActionTypes.LoginSuccess), takeUntil(this.destroyed$))
       .subscribe(() => {
-        this.router.navigateByUrl(returnUrl);
-      });
-    
-    this.actions
-      .pipe(ofType(AuthActionTypes.Logout), takeUntil(this.destoyed$))
-      .subscribe(() => {
-        this.router.navigateByUrl('/');
+        if (this.backUrl) {
+          this.router.navigateByUrl(this.backUrl);
+        }
       });
   }
 
   ngOnDestroy(): void {
-    this.destoyed$.next(true);
-    this.destoyed$.complete();
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   public login(): void {
-    this.store.dispatch(login({ username: this.username, password: 'aaaa' }));
+    this.store.dispatch(
+      login({
+        name: this.username,
+        password: 'aaaa',
+        backUrl: this.backUrl
+          ? `/login?${KEY_BACK_URL}=${this.backUrl}`
+          : '/login',
+      })
+    );
   }
 
   public logout(): void {

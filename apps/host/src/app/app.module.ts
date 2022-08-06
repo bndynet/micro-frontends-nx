@@ -9,11 +9,18 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UiModule } from '@mfe/ui';
-import { AuthGuard, DataModule } from '@mfe/data';
+import {
+  Auth0Service,
+  AuthGuard,
+  AUTH_SERVICE,
+  DataModule,
+  MyAuthService,
+} from '@mfe/data';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -25,6 +32,13 @@ import { environment } from '../environments/environment';
     DataModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-pmz1v-rd.us.auth0.com',
+      clientId: 'd5n1iaymu906aIrm1DgPpLY4Zi0VoulX',
+      useCookiesForTransactions: true,
+      useRefreshTokens: true,
+      cacheLocation: 'localstorage',
+    }),
     StoreModule.forRoot({}),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
@@ -61,10 +75,15 @@ import { environment } from '../environments/environment';
             import('login/Module').then((m) => m.RemoteEntryModule),
         },
       ],
-      { initialNavigation: 'enabledBlocking' }
+      { initialNavigation: 'enabledBlocking', enableTracing: false }
     ),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AUTH_SERVICE,
+      useClass: Auth0Service, // MyAuthService,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

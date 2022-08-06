@@ -1,7 +1,7 @@
 <mat-sidenav-container class="host-container">
   <mat-sidenav mode="side" class="sidebar" opened>
-    <h3 *ngIf="userInfo">
-      Hi {{ userInfo.username }}.
+    <h3 *ngIf="user">
+      Hi {{ user.name}}.
       <br />
       <small><a (click)="logout()">Log out</a></small>
     </h3>
@@ -30,6 +30,14 @@
         cdkMenuItem
       >
         About
+      </button>
+      <button
+        class="menu-item"
+        routerLink="login"
+        routerLinkActive="active"
+        cdkMenuItem
+      >
+        Login
       </button>
       <button
         class="menu-item"

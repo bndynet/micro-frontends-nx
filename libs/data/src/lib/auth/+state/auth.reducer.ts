@@ -1,4 +1,3 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 import { UserInfo } from '../types';
 import { login, loginFailure, loginSuccess, logoutComplete } from './auth.actions';
@@ -21,9 +20,9 @@ const reducer = createReducer(
     ...state,
     loaded: false,
   })),
-  on(loginSuccess, (state, { username }) => ({
+  on(loginSuccess, (state, { name }) => ({
     ...state,
-    ...{ username, isAuthenticated: true },
+    ...{ name, isAuthenticated: true },
   })),
   on(loginFailure, (state, { error }) => ({ ...state, error, isAuthenticated: false })),
   on(logoutComplete, (state) => initialAuthState)

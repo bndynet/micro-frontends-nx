@@ -12,12 +12,12 @@ export enum AuthActionTypes {
 
 export const login = createAction(
   AuthActionTypes.Login,
-  props<{ username: string; password: string }>()
+  props<{ name: string; password: string, backUrl: string }>()
 );
 
 export const loginSuccess = createAction(
   AuthActionTypes.LoginSuccess,
-  props<{ username: string }>()
+  props<{ name: string }>()
 );
 
 export const loginFailure = createAction(
