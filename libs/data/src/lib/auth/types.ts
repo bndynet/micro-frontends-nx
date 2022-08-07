@@ -1,16 +1,18 @@
+import { User } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 
-export interface UserInfo {
-  name?: string;
-}
+export class UserInfo extends User {}
 
 export interface LoginInfo {
-  username?: string;
-  password?: string;
+  pageUrl?: string;
   backUrl?: string;
+  requestUrl?: string;
+  requestBody?: object;
+  requestMethod?: 'get' | 'post';
 }
 
 export interface IAuthService<TUser> {
+  readonly loginPageUrl?: string;
   user$: Observable<TUser | null | undefined>;
   getId(): string;
   isAuthenticated$: Observable<boolean>;
@@ -26,6 +28,7 @@ export interface IAuthService<TUser> {
 export abstract class AuthService<TUser> implements IAuthService<TUser> {
   static id: string;
   abstract getId(): string;
+  abstract readonly loginPageUrl?: string;
   abstract user$: Observable<TUser | null | undefined>;
   abstract isAuthenticated$: Observable<boolean>;
   abstract isLoggedIn$: Observable<boolean>;

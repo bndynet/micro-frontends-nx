@@ -7,6 +7,7 @@ import { AuthService, LoginInfo } from './types';
 @Injectable()
 export class Auth0Service implements AuthService<User> {
   public static id = 'auth0';
+  public loginPageUrl?: string;
   public user$: Observable<User | null | undefined> = this.auth0.user$;
   public isAuthenticated$: Observable<boolean> = this.auth0.isAuthenticated$;
   public isLoggedIn$: Observable<boolean> = this.auth0.user$.pipe(

@@ -1,7 +1,7 @@
 <mat-sidenav-container class="host-container">
   <mat-sidenav mode="side" class="sidebar" opened>
-    <h3 *ngIf="user">
-      Hi {{ user.name}}.
+    <h3 *ngIf="user$ | async as user">
+      Hi {{ user.name }}.
       <br />
       <small><a (click)="logout()">Log out</a></small>
     </h3>

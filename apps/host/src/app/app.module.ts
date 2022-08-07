@@ -81,7 +81,7 @@ import { AuthModule } from '@auth0/auth0-angular';
   providers: [
     {
       provide: AUTH_SERVICE,
-      useClass: Auth0Service, // MyAuthService,
+      useClass: MyAuthService, // TODO: here you can define the auth service, for exmaple: MyAuthService is used for API auth,
     },
   ],
   bootstrap: [AppComponent],

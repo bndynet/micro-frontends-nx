@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthState, getAuthState, logout } from '@mfe/data';
+import { AuthState, getAuthState, logout, UserInfo } from '@mfe/data';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { map, Subject } from 'rxjs';
 
 @Component({
   selector: 'mfe-root',
@@ -9,21 +9,15 @@ import { Subject } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public user?: AuthState;
+  public user$ = this.store
+    .select(getAuthState)
+    .pipe(map((state) => state.user));
 
   private destoryed$ = new Subject<boolean>();
 
   constructor(private store: Store<AuthState>) {}
 
-  ngOnInit(): void {
-    this.store.select(getAuthState).subscribe((authState: AuthState) => {
-      if (authState.isAuthenticated) {
-        this.user = authState;
-      } else {
-        this.user = undefined;
-      }
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destoryed$.next(true);

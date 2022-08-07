@@ -1,22 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject, throwError } from 'rxjs';
-import { AuthService, LoginInfo } from './types';
-
-export interface User {
-  name: string;
-  token: string;
-}
+import { AuthService, LoginInfo, UserInfo } from './types';
 
 @Injectable()
-export class MyAuthService implements AuthService<User> {
+export class MyAuthService implements AuthService<UserInfo> {
   public static id = 'my.auth';
-  public user$: BehaviorSubject<User | null | undefined> = new BehaviorSubject<
-    User | null | undefined
-  >(null);
-  public isAuthenticated$: Observable<boolean> = this.user$.pipe(
-    map((u) => !!u)
-  );
+  public loginPageUrl?: string;
+  public user$: BehaviorSubject<UserInfo | null | undefined> =
+    new BehaviorSubject<UserInfo | null | undefined>(null);
+  public isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isLoggedIn$: Observable<boolean> = this.user$.pipe(map((u) => !!u));
   public isLoading$: Observable<boolean> = new Subject<boolean>();
 
@@ -27,33 +20,43 @@ export class MyAuthService implements AuthService<User> {
   }
 
   isAuthenticated(): Observable<boolean> {
-    return this.user$.pipe(map((u) => !!u));
+    return this.isAuthenticated$;
   }
 
-  public login(info: LoginInfo): Observable<User | null | undefined> {
-    if (info.username && info.password) {
-      return this.httpClient
-        .get<User>('http://localhost:4200/assets/user.json')
-        .pipe(
-          map((u) => {
-            const user = { ...u, name: info.username || '' };
-            this.user$.next(user);
-            return user;
-          })
-        );
+  public login(info: LoginInfo): Observable<UserInfo | null | undefined> {
+    if (info.pageUrl) {
+      this.loginPageUrl = info.pageUrl;
+    }
+
+    if (info.requestUrl) {
+      const request =
+        info.requestMethod === 'get'
+          ? this.httpClient.get<UserInfo>(info.requestUrl)
+          : this.httpClient.post<UserInfo>(info.requestUrl, info.requestBody);
+
+      return request.pipe(
+        map((u: UserInfo) => {
+          this.user$.next(u);
+          this.user$.complete();
+          this.isAuthenticated$.next(true);
+          return u;
+        })
+      );
     }
     return throwError(() => new Error('Username is required.'));
   }
 
-  public getUser(): Observable<User | null | undefined> {
+  public getUser(): Observable<UserInfo | null | undefined> {
     return this.user$;
   }
 
   public getAccessToken(): Observable<string | undefined> {
-    return this.user$.pipe(map((user) => user?.token));
+    return this.user$.pipe(map((user) => ''));
   }
 
-  logout(returnUrl?: string | undefined): void {
+  public logout(returnUrl?: string | undefined): void {
     this.user$.next(null);
+    this.user$.complete();
+    this.isAuthenticated$.next(false);
   }
 }

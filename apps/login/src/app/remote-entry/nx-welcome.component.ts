@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -5,23 +6,27 @@ import {
   AuthActionTypes,
   AuthService,
   AUTH_SERVICE,
+  getAuthState,
   KEY_BACK_URL,
   login,
-  loginSuccess,
+  LoginInfo,
   logout,
+  UserInfo,
 } from '@mfe/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
-import { User } from '@auth0/auth0-angular';
+import { first, map, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mfe-nx-welcome',
   template: `<div class="form">
-      <h1 *ngIf="user$ | async as user; else logIn">
-        Hi {{ user.name }}!
-        <button (click)="logout()">Log out</button>
-      </h1>
+      <ng-container *ngIf="user$ | async as user; else logIn">
+        <h1>
+          Hi {{ user.name }}!
+          <button (click)="logout()">Log out</button>
+        </h1>
+        <pre>{{ user | json }}</pre>
+      </ng-container>
     </div>
     <ng-template #logIn>
       <input
@@ -29,6 +34,7 @@ import { User } from '@auth0/auth0-angular';
         placeholder="User name"
         *ngIf="!enableOAuth"
       />
+      <input [(ngModel)]="password" type="password" *ngIf="!enableOAuth" />
       <button (click)="login()">
         {{ enableOAuth ? 'Log in with Auth0' : 'Log in' }}
       </button>
@@ -37,9 +43,12 @@ import { User } from '@auth0/auth0-angular';
 })
 export class NxWelcomeComponent implements OnInit, OnDestroy {
   public username: string = '';
+  public password: string = '';
   public enableOAuth = true;
 
-  public user$ = this.auth.user$;
+  public user$ = this.store
+    .select(getAuthState)
+    .pipe(map((state) => state.user));
   public isAuthenticated$ = this.auth.isAuthenticated$;
 
   private destroyed$ = new Subject<boolean>();
@@ -50,23 +59,19 @@ export class NxWelcomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private actions$: Actions,
     private activatedRoute: ActivatedRoute,
-    @Inject(AUTH_SERVICE) private auth: AuthService<User>
+    @Inject(AUTH_SERVICE) private auth: AuthService<UserInfo>,
   ) {
     this.enableOAuth = this.auth.getId() === Auth0Service.id; //  instanceof Auth0Service does not work here.
   }
 
   ngOnInit(): void {
     this.backUrl = this.activatedRoute.snapshot.queryParamMap.get(KEY_BACK_URL);
-    this.auth.user$.pipe(takeUntil(this.destroyed$)).subscribe((user: any) => {
-      if (user) {
-        this.store.dispatch(loginSuccess(user));
-      }
-    })
+
     this.actions$
       .pipe(ofType(AuthActionTypes.LoginSuccess), takeUntil(this.destroyed$))
       .subscribe(() => {
         if (this.backUrl) {
-          this.router.navigateByUrl(this.backUrl);
+          this.router.navigate([this.backUrl]);
         }
       });
   }
@@ -77,15 +82,20 @@ export class NxWelcomeComponent implements OnInit, OnDestroy {
   }
 
   public login(): void {
-    this.store.dispatch(
-      login({
+    const loginInfo: LoginInfo = {
+      backUrl: this.backUrl
+        ? `/login?${KEY_BACK_URL}=${this.backUrl}`
+        : '/login',
+      requestUrl: 'http://localhost:4200/assets/user.json',
+      requestMethod: 'get',
+      requestBody: {
         name: this.username,
-        password: 'aaaa',
-        backUrl: this.backUrl
-          ? `/login?${KEY_BACK_URL}=${this.backUrl}`
-          : '/login',
-      })
-    );
+        password: this.password,
+      },
+    };
+    this.username = '';
+    this.password = '';
+    this.store.dispatch(login(loginInfo));
   }
 
   public logout(): void {

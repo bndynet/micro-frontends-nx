@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthState, getAuthState, logout, logoutComplete } from '@mfe/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mfe-nx-welcome',
-  template: `<div *ngIf="userInfo">
+  template: `<div *ngIf="userInfo$ | async as userInfo">
     <mfe-welcome
       [title]="'Hi ' + userInfo.name"
       bg="#086978"
@@ -17,7 +17,9 @@ import { Subject, takeUntil } from 'rxjs';
   </div>`,
 })
 export class NxWelcomeComponent implements OnInit, OnDestroy {
-  public userInfo?: AuthState;
+  public userInfo$ = this.store
+    .select(getAuthState)
+    .pipe(map((state) => state.user));
 
   private destroyed$ = new Subject<boolean>();
 
@@ -28,13 +30,11 @@ export class NxWelcomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.store.select(getAuthState).subscribe((authState: AuthState) => {
-      this.userInfo = authState.isAuthenticated ? authState : undefined;
-    });
-
-    this.actions$.pipe(ofType(logoutComplete), takeUntil(this.destroyed$)).subscribe(() => {
-      this.router.navigateByUrl('/');
-    });
+    this.actions$
+      .pipe(ofType(logoutComplete), takeUntil(this.destroyed$))
+      .subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
   }
 
   ngOnDestroy(): void {

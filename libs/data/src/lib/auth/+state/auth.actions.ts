@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { LoginInfo, UserInfo } from '../types';
 
 export enum AuthActionTypes {
   Login = '[Login Page] Login',
@@ -10,25 +11,23 @@ export enum AuthActionTypes {
   LogoutComplete = '[Auth] Logout Complete',
 }
 
-export const login = createAction(
-  AuthActionTypes.Login,
-  props<{ name: string; password: string, backUrl: string }>()
-);
+export const login = createAction(AuthActionTypes.Login, props<LoginInfo>());
 
 export const loginSuccess = createAction(
   AuthActionTypes.LoginSuccess,
-  props<{ name: string }>()
+  props<UserInfo>()
 );
 
 export const loginFailure = createAction(
   AuthActionTypes.LoginFailure,
-  props<{ error: any}>()
+  props<{ error: any }>()
 );
 
-export const checkLogin = createAction(
-  AuthActionTypes.CheckLogin,
-);
+export const checkLogin = createAction(AuthActionTypes.CheckLogin);
 
-export const logout = createAction(AuthActionTypes.Logout);
+export const logout = createAction(
+  AuthActionTypes.Logout,
+  props<{ returnUrl?: string }>
+);
 
 export const logoutComplete = createAction(AuthActionTypes.LogoutComplete);

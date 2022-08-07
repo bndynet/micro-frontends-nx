@@ -33,11 +33,6 @@ export class AuthGuard implements CanActivate {
             queryParams: qp,
           });
         }
-        this.authService.user$.subscribe(u => {
-          if (u) {
-            this.store.dispatch(loginSuccess(u));
-          }
-        });
         return authencated;
       })
     );
