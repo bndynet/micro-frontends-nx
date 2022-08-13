@@ -12,6 +12,7 @@ import { UiModule } from '@mfe/ui';
 import {
   Auth0Service,
   AuthGuard,
+  AUTH_CONFIG,
   AUTH_SERVICE,
   DataModule,
   MyAuthService,
@@ -21,6 +22,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AuthModule } from '@auth0/auth0-angular';
+
+const authConfig = {
+  loginPageUrl: '/login',
+  domain: 'dev-pmz1v-rd.us.auth0.com',
+  clientId: 'd5n1iaymu906aIrm1DgPpLY4Zi0VoulX',
+  useCookiesForTransactions: true,
+  useRefreshTokens: true,
+  cacheLocation: 'localstorage',
+};
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -66,13 +76,13 @@ import { AuthModule } from '@auth0/auth0-angular';
             import('about/Module').then((m) => m.RemoteEntryModule),
         },
         {
-          path: '',
-          component: NxWelcomeComponent,
-        },
-        {
           path: 'login',
           loadChildren: () =>
             import('login/Module').then((m) => m.RemoteEntryModule),
+        },
+        {
+          path: '',
+          component: NxWelcomeComponent,
         },
       ],
       { initialNavigation: 'enabledBlocking', enableTracing: false }
@@ -81,7 +91,12 @@ import { AuthModule } from '@auth0/auth0-angular';
   providers: [
     {
       provide: AUTH_SERVICE,
-      useClass: MyAuthService, // TODO: here you can define the auth service, for exmaple: MyAuthService is used for API auth,
+      useClass: Auth0Service, // TODO: here you can define the auth service, for exmaple: MyAuthService is used for API auth,
+      // useClass: MyAuthService, // TODO: here you can define the auth service, for exmaple: MyAuthService is used for API auth,
+    },
+    {
+      provide: AUTH_CONFIG,
+      useValue: authConfig,
     },
   ],
   bootstrap: [AppComponent],

@@ -1,12 +1,20 @@
-import { Injectable } from '@angular/core';
-import { AuthService as Auth0, User } from '@auth0/auth0-angular';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable, Injector } from '@angular/core';
+import {
+  AuthClientConfig,
+  AuthService as Auth0,
+  User,
+} from '@auth0/auth0-angular';
+import { Store } from '@ngrx/store';
 
-import { map, Observable, switchMap, tap, throwError } from 'rxjs';
+import { map, Observable, switchMap, throwError } from 'rxjs';
+import { loginSuccess } from './+state';
+import { AuthConfig, AUTH_CONFIG } from './auth.config';
 import { AuthService, LoginInfo } from './types';
 
 @Injectable()
-export class Auth0Service implements AuthService<User> {
-  public static id = 'auth0';
+export class Auth0Service extends AuthService<User> {
+  public static override id = 'auth0';
   public loginPageUrl?: string;
   public user$: Observable<User | null | undefined> = this.auth0.user$;
   public isAuthenticated$: Observable<boolean> = this.auth0.isAuthenticated$;
@@ -15,7 +23,19 @@ export class Auth0Service implements AuthService<User> {
   );
   public isLoading$: Observable<boolean> = this.auth0.isLoading$;
 
-  constructor(private auth0: Auth0) {}
+  constructor(
+    httpClient: HttpClient,
+    @Inject(AUTH_CONFIG) authConfig: AuthConfig,
+    private auth0: Auth0,
+    private store: Store
+  ) {
+    super(httpClient, authConfig);
+    this.auth0.user$.subscribe((user?: User | null) => {
+      if (user) {
+        this.store.dispatch(loginSuccess(user));
+      }
+    });
+  }
 
   public getId(): string {
     return Auth0Service.id;

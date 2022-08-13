@@ -1,25 +1,33 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject, throwError } from 'rxjs';
+import { AuthConfig, AUTH_CONFIG } from './auth.config';
 import { AuthService, LoginInfo, UserInfo } from './types';
 
 @Injectable()
-export class MyAuthService implements AuthService<UserInfo> {
-  public static id = 'my.auth';
+export class MyAuthService extends AuthService<UserInfo> {
+  public static override id = 'my.auth';
   public loginPageUrl?: string;
   public user$: BehaviorSubject<UserInfo | null | undefined> =
     new BehaviorSubject<UserInfo | null | undefined>(null);
-  public isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   public isLoggedIn$: Observable<boolean> = this.user$.pipe(map((u) => !!u));
   public isLoading$: Observable<boolean> = new Subject<boolean>();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    httpClient: HttpClient,
+    @Inject(AUTH_CONFIG) authConfig: AuthConfig
+  ) {
+    super(httpClient, authConfig);
+  }
 
-  getId(): string {
+  public getId(): string {
     return MyAuthService.id;
   }
 
-  isAuthenticated(): Observable<boolean> {
+  public isAuthenticated(): Observable<boolean> {
+    console.log(this);
     return this.isAuthenticated$;
   }
 

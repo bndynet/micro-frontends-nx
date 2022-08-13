@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { User } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
+import { AuthConfig } from './auth.config';
 
 export class UserInfo extends User {}
 
@@ -27,6 +29,10 @@ export interface IAuthService<TUser> {
 
 export abstract class AuthService<TUser> implements IAuthService<TUser> {
   static id: string;
+  constructor(
+    protected httpClient: HttpClient,
+    public authConfig: AuthConfig
+  ) {}
   abstract getId(): string;
   abstract readonly loginPageUrl?: string;
   abstract user$: Observable<TUser | null | undefined>;
@@ -39,6 +45,5 @@ export abstract class AuthService<TUser> implements IAuthService<TUser> {
   abstract isAuthenticated(): Observable<boolean>;
   abstract logout(returnUrl?: string | undefined): void | Observable<void>;
 }
-
 
 export const KEY_BACK_URL = 'backUrl';

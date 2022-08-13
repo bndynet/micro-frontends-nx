@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -10,12 +9,13 @@ import {
   KEY_BACK_URL,
   login,
   LoginInfo,
+  loginSuccess,
   logout,
   UserInfo,
 } from '@mfe/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { first, map, Subject, takeUntil } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mfe-nx-welcome',
@@ -59,7 +59,7 @@ export class NxWelcomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private actions$: Actions,
     private activatedRoute: ActivatedRoute,
-    @Inject(AUTH_SERVICE) private auth: AuthService<UserInfo>,
+    @Inject(AUTH_SERVICE) private auth: AuthService<UserInfo>
   ) {
     this.enableOAuth = this.auth.getId() === Auth0Service.id; //  instanceof Auth0Service does not work here.
   }
@@ -72,6 +72,14 @@ export class NxWelcomeComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         if (this.backUrl) {
           this.router.navigate([this.backUrl]);
+        }
+      });
+
+    this.auth.user$
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((user?: UserInfo | null) => {
+        if (user) {
+          this.store.dispatch(loginSuccess(user));
         }
       });
   }

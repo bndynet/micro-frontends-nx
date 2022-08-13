@@ -6,11 +6,9 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { loginSuccess } from './+state';
 import { AUTH_SERVICE } from './auth.provider';
-import { AuthService, KEY_BACK_URL } from './types';
+import { AuthService, KEY_BACK_URL} from './types';
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +25,11 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAuthenticated$.pipe(
       map((authencated: boolean) => {
         if (!authencated) {
-          const qp: { [key: string]: string } = {};
-          qp[KEY_BACK_URL] = state.url;
-          this.router.navigate(['login'], {
-            queryParams: qp,
-          });
+          let loginPage = this.authService.authConfig.loginPageUrl || '/login';
+          loginPage = loginPage.includes('?')
+            ? `${loginPage}&${KEY_BACK_URL}=${state.url}`
+            : `${loginPage}?${KEY_BACK_URL}=${state.url}`;
+          this.router.navigateByUrl(loginPage);
         }
         return authencated;
       })
@@ -39,7 +37,6 @@ export class AuthGuard implements CanActivate {
   }
 
   constructor(
-    private store: Store,
     private router: Router,
     @Inject(AUTH_SERVICE) private authService: AuthService<any>
   ) {}
