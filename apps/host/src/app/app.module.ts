@@ -22,6 +22,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AuthModule } from '@auth0/auth0-angular';
+import { AppRoutingModule } from './app-routing.module';
+import { AppLayoutModule } from './layout/app.layout.module';
 
 const authConfig = {
   loginPageUrl: '/login',
@@ -57,36 +59,8 @@ const authConfig = {
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
     EffectsModule.forRoot([]),
-    RouterModule.forRoot(
-      [
-        {
-          path: 'shop',
-          loadChildren: () =>
-            import('shop/Module').then((m) => m.RemoteEntryModule),
-          canActivate: [AuthGuard],
-        },
-        {
-          path: 'cart',
-          loadChildren: () =>
-            import('cart/Module').then((m) => m.RemoteEntryModule),
-        },
-        {
-          path: 'about',
-          loadChildren: () =>
-            import('about/Module').then((m) => m.RemoteEntryModule),
-        },
-        {
-          path: 'login',
-          loadChildren: () =>
-            import('login/Module').then((m) => m.RemoteEntryModule),
-        },
-        {
-          path: '',
-          component: NxWelcomeComponent,
-        },
-      ],
-      { initialNavigation: 'enabledBlocking', enableTracing: false }
-    ),
+    AppRoutingModule,
+    AppLayoutModule,
   ],
   providers: [
     {

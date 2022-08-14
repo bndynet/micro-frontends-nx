@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthState, getAuthState, logout, UserInfo } from '@mfe/data';
 import { Store } from '@ngrx/store';
+import { PrimeNGConfig } from 'primeng/api';
 import { map, Subject } from 'rxjs';
 
 @Component({
@@ -15,9 +16,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private destoryed$ = new Subject<boolean>();
 
-  constructor(private store: Store<AuthState>) {}
+  constructor(
+    private store: Store<AuthState>,
+    private primengConfig: PrimeNGConfig
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+  }
 
   ngOnDestroy(): void {
     this.destoryed$.next(true);

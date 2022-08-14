@@ -4,9 +4,9 @@
   "projects": {
     "about": "apps/about",
     "about-e2e": "apps/about-e2e",
-    "cart": "apps/cart",
-    "cart-e2e": "apps/cart-e2e",
     "data": "libs/data",
+    "docs": "apps/docs",
+    "docs-e2e": "apps/docs-e2e",
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
     "login": "apps/login",

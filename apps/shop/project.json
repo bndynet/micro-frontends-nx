@@ -68,8 +68,8 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4201,
-        "publicHost": "http://localhost:4201"
+        "port": 4204,
+        "publicHost": "http://localhost:4204"
       }
     },
     "extract-i18n": {
@@ -97,7 +97,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "shop:build",
-        "port": 4201
+        "port": 4204
       },
       "configurations": {
         "development": {

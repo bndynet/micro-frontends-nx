@@ -1,6 +1,6 @@
 declare module 'shop/Module';
 
-declare module 'cart/Module';
+declare module 'docs/Module';
 
 declare module 'about/Module';
 
