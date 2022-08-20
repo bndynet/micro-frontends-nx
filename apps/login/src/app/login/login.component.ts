@@ -21,6 +21,12 @@ import { map, Subject, takeUntil } from 'rxjs';
   templateUrl: './login.component.html',
   styles: [
     `
+      :host {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 800px;
+      }
       :host ::ng-deep .p-password input {
         width: 100%;
         padding: 1rem;

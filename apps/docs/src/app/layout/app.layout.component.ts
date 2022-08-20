@@ -1,20 +1,14 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { LayoutService } from '@mfe/data';
-import { filter, map, Subscription } from 'rxjs';
-import { AppSidebarComponent } from './app.sidebar.component';
-import { AppTopBarComponent } from './app.topbar.component';
+import { filter, Subscription } from 'rxjs';
+// import { LayoutService } from "./service/app.layout.service";
+// import { AppSidebarComponent } from "./app.sidebar.component";
+// import { AppTopBarComponent } from './app.topbar.component';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './app.layout.component.html',
-  styleUrls: ['./app.layout.component.scss'],
 })
 export class AppLayoutComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;
@@ -23,10 +17,6 @@ export class AppLayoutComponent implements OnDestroy {
 
   profileMenuOutsideClickListener: any;
 
-  @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
-
-  @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
-
   constructor(
     public router: Router,
     public renderer: Renderer2,
@@ -34,50 +24,6 @@ export class AppLayoutComponent implements OnDestroy {
   ) {
     this.overlayMenuOpenSubscription =
       this.layoutService.overlayOpen$.subscribe(() => {
-        if (!this.menuOutsideClickListener) {
-          this.menuOutsideClickListener = this.renderer.listen(
-            'document',
-            'click',
-            (event) => {
-              const isOutsideClicked = !(
-                this.appSidebar.el.nativeElement.isSameNode(event.target) ||
-                this.appSidebar.el.nativeElement.contains(event.target) ||
-                this.appTopbar.menuButton.nativeElement.isSameNode(
-                  event.target
-                ) ||
-                this.appTopbar.menuButton.nativeElement.contains(event.target)
-              );
-
-              if (isOutsideClicked) {
-                this.hideMenu();
-              }
-            }
-          );
-        }
-
-        if (!this.profileMenuOutsideClickListener) {
-          this.profileMenuOutsideClickListener = this.renderer.listen(
-            'document',
-            'click',
-            (event) => {
-              const isOutsideClicked = !(
-                this.appTopbar.menu.nativeElement.isSameNode(event.target) ||
-                this.appTopbar.menu.nativeElement.contains(event.target) ||
-                this.appTopbar.topbarMenuButton.nativeElement.isSameNode(
-                  event.target
-                ) ||
-                this.appTopbar.topbarMenuButton.nativeElement.contains(
-                  event.target
-                )
-              );
-
-              if (isOutsideClicked) {
-                this.hideProfileMenu();
-              }
-            }
-          );
-        }
-
         if (this.layoutService.state.staticMenuMobileActive) {
           this.blockBodyScroll();
         }
@@ -145,15 +91,6 @@ export class AppLayoutComponent implements OnDestroy {
       'layout-mobile-active': this.layoutService.state.staticMenuMobileActive,
       'p-input-filled': this.layoutService.config.inputStyle === 'filled',
       'p-ripple-disabled': !this.layoutService.config.ripple,
-    };
-  }
-
-  get toggleIconClass() {
-    return {
-      'pi-angle-left': this.layoutService.config.menuMode === 'static',
-      'pi-angle-right':
-        this.layoutService.state.staticMenuDesktopInactive &&
-        this.layoutService.config.menuMode === 'static',
     };
   }
 

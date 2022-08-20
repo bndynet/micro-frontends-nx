@@ -19,6 +19,7 @@ import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from './app.sidebar.component';
 import { AppLayoutComponent } from './app.layout.component';
 import { ButtonModule } from 'primeng/button';
+import { UiModule } from '@mfe/ui';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ButtonModule } from 'primeng/button';
     RippleModule,
     RouterModule,
     AppConfigModule,
+    UiModule,
   ],
   exports: [AppLayoutComponent],
 })

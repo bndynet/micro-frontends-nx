@@ -1,10 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { getAuthState } from '@mfe/data';
+import { getAuthState, LayoutService } from '@mfe/data';
 import { Store } from '@ngrx/store';
 import { MenuItem } from 'primeng/api';
 import { map } from 'rxjs';
-import { LayoutService } from './service/app.layout.service';
 
 @Component({
   selector: 'app-topbar',

@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { RemoteEntryComponent } from './entry.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { LayoutModule } from '../layout/layout.module';
+import { ContentComponent } from '../content/content.component';
 import { UiModule } from '@mfe/ui';
 
 @NgModule({
-  declarations: [RemoteEntryComponent, NxWelcomeComponent],
-  imports: [
-    CommonModule,
-    UiModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: RemoteEntryComponent,
-      },
-    ]),
-  ],
+  declarations: [RemoteEntryComponent, ContentComponent],
+  imports: [CommonModule, UiModule, AppRoutingModule, LayoutModule],
   providers: [],
 })
 export class RemoteEntryModule {}

@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { RemoteEntryComponent } from './entry.component';
 import { LoginComponent } from '../login/login.component';
+import { UiModule } from '@mfe/ui';
 
 @NgModule({
   declarations: [RemoteEntryComponent, LoginComponent],
@@ -19,6 +20,7 @@ import { LoginComponent } from '../login/login.component';
     CheckboxModule,
     InputTextModule,
     PasswordModule,
+    UiModule,
     RouterModule.forChild([
       {
         path: '',

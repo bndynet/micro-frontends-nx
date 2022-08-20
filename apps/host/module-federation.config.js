@@ -5,6 +5,7 @@ const sharedLibraires = [
   'es-cookie',
   '@mfe/', // Shared libraries, such as UiModule, please see /tsconfig.base.json paths node
   'rxjs',
+  'primeng',
   // Place the shared libraries here
   // 'moment',
 ];

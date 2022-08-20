@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from './app.menu.service';
 import { LayoutService } from '@mfe/data';
+// import { LayoutService } from './service/app.layout.service';
 
 @Component({
     /* tslint:disable:component-selector */

@@ -1,0 +1,19 @@
+.layout-main-container {
+  &.no-sidebar {
+    margin-left: 0 !important;
+  }
+}
+
+.menu-toggle {
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  background-color: var(--surface-overlay);
+  border: solid 1px var(--surface-border);
+  border-left: none;
+  color: var(--text-color-secondary);
+  padding: 1.5rem 0;
+  margin-left: calc(-2rem - 1px);
+  border-radius: 0 8px 8px 0;
+  z-index: 999;
+}
