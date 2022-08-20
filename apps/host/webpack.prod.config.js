@@ -1,15 +1,12 @@
 const { withModuleFederation } = require('@nrwl/angular/module-federation');
 const config = require('./module-federation.config');
+const baseHref = '/mfe/';  // here need to sync with node `baseHref` of ./project.json
 module.exports = withModuleFederation({
   ...config,
-  /*
-   * Remote overrides for production.
-   * Each entry is a pair of an unique name and the URL where it is deployed.
-   *
-   * e.g.
-   * remotes: [
-   *   ['app1', 'https://app1.example.com'],
-   *   ['app2', 'https://app2.example.com'],
-   * ]
-   */
+  remotes: [
+    ['about', `${baseHref}apps/about`],
+    ['docs', `${baseHref}apps/docs`],
+    ['login', `${baseHref}apps/login`],
+    ['shop', `${baseHref}apps/shop`],
+  ],
 });
