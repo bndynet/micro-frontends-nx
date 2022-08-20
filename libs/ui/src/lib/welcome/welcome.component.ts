@@ -12,6 +12,8 @@ export class WelcomeComponent implements OnInit {
   public bg = '#143157';
   @Input()
   public showLogoutButton = false;
+  @Input()
+  public hideContent = false;
   @Output()
   public logoutHandler = new EventEmitter();
 
