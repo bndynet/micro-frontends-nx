@@ -2,25 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { MaterialModule } from './material.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from '@auth0/auth0-angular';
+import { Auth0Service, AUTH_CONFIG, AUTH_SERVICE, DataModule } from '@mfe/data';
 import { UiModule } from '@mfe/ui';
-import {
-  Auth0Service,
-  AUTH_CONFIG,
-  AUTH_SERVICE,
-  DataModule,
-} from '@mfe/data';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { AuthModule } from '@auth0/auth0-angular';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { AppLayoutModule } from './layout/app.layout.module';
+import { MaterialModule } from './material.module';
+import { NxWelcomeComponent } from './nx-welcome.component';
 
 const authConfig = {
   loginPageUrl: '/login',

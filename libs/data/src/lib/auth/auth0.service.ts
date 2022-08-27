@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Injector } from '@angular/core';
-import {
-  AuthClientConfig,
-  AuthService as Auth0,
-  User,
-} from '@auth0/auth0-angular';
+import { Inject, Injectable } from '@angular/core';
+import { AuthService as Auth0, User } from '@auth0/auth0-angular';
 import { Store } from '@ngrx/store';
 
 import { map, Observable, switchMap, throwError } from 'rxjs';

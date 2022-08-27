@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
-import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 
-import { RemoteEntryComponent } from './entry.component';
-import { LoginComponent } from '../login/login.component';
 import { UiModule } from '@mfe/ui';
+import { LoginComponent } from '../login/login.component';
+import { RemoteEntryComponent } from './entry.component';
 
 @NgModule({
   declarations: [RemoteEntryComponent, LoginComponent],

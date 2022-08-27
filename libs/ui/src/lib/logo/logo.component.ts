@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { LayoutService } from '@mfe/data';
 
 @Component({

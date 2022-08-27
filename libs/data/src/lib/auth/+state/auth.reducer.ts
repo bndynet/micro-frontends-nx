@@ -1,4 +1,4 @@
-import { createReducer, on, Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { UserInfo } from '../types';
 import {
   login,

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { UiModule } from '@mfe/ui';
 import { RemoteEntryComponent } from './entry.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { UiModule } from '@mfe/ui';
 
 @NgModule({
   declarations: [RemoteEntryComponent, NxWelcomeComponent],

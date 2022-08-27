@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthState, getAuthState, logout, logoutComplete } from '@mfe/data';
 import { Actions, ofType } from '@ngrx/effects';

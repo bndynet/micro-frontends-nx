@@ -1,8 +1,8 @@
-import { NgModule, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { NgModule, Type } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import { AUTH_FEATURE_KEY, authReducer, authProvider } from './auth';
+import { StoreModule } from '@ngrx/store';
+import { authProvider, authReducer, AUTH_FEATURE_KEY } from './auth';
 import { AuthEffects } from './auth/+state/auth.effects';
 
 export interface ModuleOptions {

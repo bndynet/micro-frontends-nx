@@ -1,5 +1,4 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '@mfe/data';
 // import { LayoutService } from './service/app.layout.service';
 
@@ -17,7 +16,11 @@ export class AppMenuComponent implements OnInit {
       {
         label: 'Home',
         items: [
-          { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['dashboard'] },
+          {
+            label: 'Dashboard',
+            icon: 'pi pi-fw pi-home',
+            routerLink: ['dashboard'],
+          },
         ],
       },
       {

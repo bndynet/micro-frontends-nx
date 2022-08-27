@@ -1,7 +1,7 @@
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { AppLayoutComponent } from './layout/app.layout.component';
+import { RouterModule } from '@angular/router';
 import { AuthGuard } from '@mfe/data';
+import { AppLayoutComponent } from './layout/app.layout.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 
 const mfeRouting = [
@@ -45,7 +45,7 @@ const mfeRouting = [
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
         onSameUrlNavigation: 'reload',
-        initialNavigation: 'enabledBlocking', 
+        initialNavigation: 'enabledBlocking',
         enableTracing: false,
       }
     ),

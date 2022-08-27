@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { LayoutService } from '@mfe/data';
 import { filter, Subscription } from 'rxjs';
