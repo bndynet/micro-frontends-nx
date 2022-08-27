@@ -1,13 +1,12 @@
 import {
   Component,
   OnDestroy,
-  OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LayoutService } from '@mfe/data';
-import { filter, map, Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { AppSidebarComponent } from './app.sidebar.component';
 import { AppTopBarComponent } from './app.topbar.component';
 
@@ -19,9 +18,9 @@ import { AppTopBarComponent } from './app.topbar.component';
 export class AppLayoutComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;
 
-  menuOutsideClickListener: any;
+  menuOutsideClickListener?: (() => void) | null;
 
-  profileMenuOutsideClickListener: any;
+  profileMenuOutsideClickListener?: (() => void) | null;
 
   @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 

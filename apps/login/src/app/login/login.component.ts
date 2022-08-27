@@ -48,8 +48,8 @@ import { map, Subject, takeUntil } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public valCheck: string[] = ['remember'];
-  public username: string = '';
-  public password: string = '';
+  public username = '';
+  public password = '';
   public enableOAuth = true;
   public themeInDark = false;
 

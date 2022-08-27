@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthState, getAuthState, logout, UserInfo } from '@mfe/data';
+import { AuthState, getAuthState, logout } from '@mfe/data';
 import { Store } from '@ngrx/store';
 import { PrimeNGConfig } from 'primeng/api';
 import { map, Subject } from 'rxjs';

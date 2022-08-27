@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'mfe-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent {
   @Input()
   public title = '';
   @Input()
@@ -16,10 +16,6 @@ export class WelcomeComponent implements OnInit {
   public hideContent = false;
   @Output()
   public logoutHandler = new EventEmitter();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   logout(): void {
     this.logoutHandler.emit();

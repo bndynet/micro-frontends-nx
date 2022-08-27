@@ -4,18 +4,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UiModule } from '@mfe/ui';
 import {
   Auth0Service,
-  AuthGuard,
   AUTH_CONFIG,
   AUTH_SERVICE,
   DataModule,
-  MyAuthService,
 } from '@mfe/data';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';

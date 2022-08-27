@@ -7,9 +7,9 @@ import { MenuService } from './app.menu.service';
 import { LayoutService } from '@mfe/data';
 
 @Component({
-    /* tslint:disable:component-selector */
+    /* eslint-disable */
     selector: '[app-menuitem]',
-    /* tslint:enable:component-selector */
+    /* eslint-disable */
     template: `
 		<ng-container>
             <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">{{item.label}}</div>
@@ -68,7 +68,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     menuResetSubscription: Subscription;
 
-    key: string = "";
+    key = "";
 
     constructor(public layoutService: LayoutService, private cd: ChangeDetectorRef, public router: Router, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(value => {
@@ -105,7 +105,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     }
 
     updateActiveStateFromRoute() {
-        let activeRoute = this.router.isActive(this.item.routerLink[0], { paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' });
+        const activeRoute = this.router.isActive(this.item.routerLink[0], { paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' });
 
         if (activeRoute) {
             this.menuService.onMenuStateChange({ key: this.key, routeEvent: true });

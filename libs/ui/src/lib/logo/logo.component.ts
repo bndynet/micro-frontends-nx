@@ -2,7 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 import { LayoutService } from '@mfe/data';
 
 @Component({
-  selector: 'app-logo',
+  selector: 'ui-logo',
   template: ` <img
     src="https://static.bndy.net/images/{{
       layoutService.config.colorScheme === 'light' ? 'logo' : 'logo_white'

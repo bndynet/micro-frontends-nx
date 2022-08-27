@@ -8,7 +8,7 @@ import { MenuService } from "../app.menu.service";
 })
 export class AppConfigComponent {
 
-    @Input() minimal: boolean = false;
+    @Input() minimal = false;
 
     scales: number[] = [12, 13, 14, 15, 16];
 
@@ -60,7 +60,7 @@ export class AppConfigComponent {
 
     changeTheme(theme: string, colorScheme: string) {
         const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
-        const newHref = themeLink.getAttribute('href')!.replace(this.layoutService.config.theme, theme);
+        const newHref = themeLink.getAttribute('href')?.replace(this.layoutService.config.theme, theme) || '';
         this.layoutService.config.colorScheme
         this.replaceThemeLink(newHref, () => {
             this.layoutService.config.theme = theme;
@@ -69,7 +69,7 @@ export class AppConfigComponent {
         });
     }
 
-    replaceThemeLink(href: string, onComplete: Function) {
+    replaceThemeLink(href: string, onComplete: () => void) {
         const id = 'theme-css';
         const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
         const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
@@ -77,7 +77,7 @@ export class AppConfigComponent {
         cloneLinkElement.setAttribute('href', href);
         cloneLinkElement.setAttribute('id', id + '-clone');
 
-        themeLink.parentNode!.insertBefore(cloneLinkElement, themeLink.nextSibling);
+        themeLink.parentNode?.insertBefore(cloneLinkElement, themeLink.nextSibling);
 
         cloneLinkElement.addEventListener('load', () => {
             themeLink.remove();

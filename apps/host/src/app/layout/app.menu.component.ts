@@ -8,6 +8,7 @@ import { LayoutService } from '@mfe/data';
 })
 export class AppMenuComponent implements OnInit {
 
+    /* eslint-disable */
     model: any[] = [];
 
     constructor(public layoutService: LayoutService) { }
