@@ -9,7 +9,8 @@
     "prettier": "npx prettier --write './{apps,libs}/**/*.ts'",
     "postbuild": "node ./tools/build-post.js",
     "test": "nx test",
-    "postinstall": "ngcc --properties es2020 browser module main"
+    "postinstall": "ngcc --properties es2020 browser module main",
+    "prepare": "husky install"
   },
   "private": true,
   "devDependencies": {
@@ -76,11 +77,6 @@
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.ts": [

@@ -17,7 +17,7 @@ export interface Menu {
   routerLinkOptions?: any;
   queryParamsHandling?: any;
   fragment?: string;
-  preserveFragment?: any; 
+  preserveFragment?: any;
   skipLocationChange?: any;
   replaceUrl?: any;
   state?: any;
