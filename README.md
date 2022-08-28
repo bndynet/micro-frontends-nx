@@ -1,12 +1,8 @@
+# Micro-Frontend for Angular
 
-
-# Mfe
-
-This project was generated using [Nx](https://nx.dev).
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Smart, Fast and Extensible Build System**
+<a href="https://nx.dev" taget="_blank">
+  <img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="250">
+</a>
 
 ## Adding capabilities to your workspace
 
@@ -51,10 +47,6 @@ Libraries are shareable across libraries and applications. They can be imported 
 
 Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
 ## Build
 
 Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
@@ -75,17 +67,11 @@ Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
 Run `nx graph` to see a diagram of the dependencies of your projects.
 
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
 
 ## ☁ Nx Cloud
 
 ### Distributed Computation Caching & Distributed Task Execution
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 
 Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
@@ -93,9 +79,68 @@ Teams using Nx gain the advantage of building full-stack applications with their
 
 Visit [Nx Cloud](https://nx.app/) to learn more.
 
-
 ## Other useful commands
 
-```bash
+```shell
+nx g @nrwl/angular:app my-app
+nx g @nrwl/angular:component my-component --project=my-app
+nx g @nrwl/angular:lib ui
 nx g @nrwl/angular:ngrx auth --module=libs/data/src/lib/data.module.ts --no-interactive
+```
+
+## Configurations
+
+### Apps - workspace.json
+
+```json
+{
+  "projects": {
+    "host": "apps/host",
+    "host-e2e": "apps/host-e2e",
+    "about": "apps/about",
+    "about-e2e": "apps/about-e2e"
+  }
+}
+```
+
+### Shared Libraries - tsconfig.base.json
+
+```json
+"paths": {
+  "@mfe/ui": ["libs/ui/src/index.ts"],
+  "@mfe/data": ["libs/data/src/index.ts"],
+  "@mfe/utils": ["libs/utils/src/index.ts"]
+}
+```
+
+### Apps in Host - apps/host/project.json
+
+```json
+{
+  "implicitDependencies": ["pages", "docs", "login", "shop"],
+  "targets": {
+    "build": {
+      "configurations": {
+        "production": {
+          "baseHref": "/mfe/"
+        }
+      }
+    }
+  }
+}
+```
+
+### Build - apps/host/webpack.prod.config.js
+
+```js
+const baseHref = '/mfe/';  // here need to sync with node `baseHref` of ./project.json
+module.exports = withModuleFederation({
+  ...config,
+  remotes: [
+    ['pages', `${baseHref}apps/pages`],
+    ['docs', `${baseHref}apps/docs`],
+    ['login', `${baseHref}apps/login`],
+    ['shop', `${baseHref}apps/shop`],
+  ],
+});
 ```

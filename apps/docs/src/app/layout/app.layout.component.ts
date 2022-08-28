@@ -2,9 +2,6 @@ import { Component, OnDestroy, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { LayoutService } from '@mfe/data';
 import { filter, Subscription } from 'rxjs';
-// import { LayoutService } from "./service/app.layout.service";
-// import { AppSidebarComponent } from "./app.sidebar.component";
-// import { AppTopBarComponent } from './app.topbar.component';
 
 @Component({
   selector: 'app-layout',
