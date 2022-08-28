@@ -17,6 +17,7 @@ import { LayoutService } from '@mfe/data';
 
       img {
         scale: 1.25;
+        max-height: 60px;
       }
     `,
   ],

@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@mfe/data": ["libs/data/src/index.ts"],
-      "@mfe/ui": ["libs/ui/src/index.ts"]
+      "@mfe/ui": ["libs/ui/src/index.ts"],
+      "@mfe/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -83,10 +83,10 @@
     }
   },
   "lint-staged": {
-    "./{apps,libs}/**/*.ts": [
+    "*.ts": [
       "prettier --write"
     ],
-    "./{apps,libs}/**/*.scss": [
+    "*.scss": [
       "stylelint --fix"
     ]
   }
