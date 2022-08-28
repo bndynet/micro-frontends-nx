@@ -4,7 +4,7 @@ const baseHref = '/mfe/';  // here need to sync with node `baseHref` of ./projec
 module.exports = withModuleFederation({
   ...config,
   remotes: [
-    ['about', `${baseHref}apps/about`],
+    ['pages', `${baseHref}apps/pages`],
     ['docs', `${baseHref}apps/docs`],
     ['login', `${baseHref}apps/login`],
     ['shop', `${baseHref}apps/shop`],

@@ -15,8 +15,8 @@ const mfeRouting = [
     loadChildren: () => import('docs/Module').then((m) => m.RemoteEntryModule),
   },
   {
-    path: 'about',
-    loadChildren: () => import('about/Module').then((m) => m.RemoteEntryModule),
+    path: 'pages',
+    loadChildren: () => import('pages/Module').then((m) => m.RemoteEntryModule),
   },
   {
     path: 'login',

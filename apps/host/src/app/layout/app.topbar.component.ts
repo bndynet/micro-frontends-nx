@@ -36,8 +36,8 @@ export class AppTopBarComponent implements OnInit {
       },
       {
         icon: 'pi pi-fw pi-tag',
-        label: 'About',
-        url: '/about',
+        label: 'Pages',
+        url: '/pages',
       },
       {
         icon: 'pi pi-fw pi-book',

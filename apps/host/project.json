@@ -2,7 +2,7 @@
   "projectType": "application",
   "sourceRoot": "apps/host/src",
   "prefix": "mfe",
-  "implicitDependencies": ["about", "docs", "login", "shop"],
+  "implicitDependencies": ["pages", "docs", "login", "shop"],
   "targets": {
     "build": {
       "executor": "@nrwl/angular:webpack-browser",
