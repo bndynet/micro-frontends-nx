@@ -8,12 +8,12 @@ import { map, Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'mfe-nx-welcome',
   template: `<div *ngIf="userInfo$ | async as userInfo">
-    <mfe-welcome
+    <ui-welcome
       [title]="'Hi ' + userInfo.name"
       bg="#086978"
       [showLogoutButton]="true"
       (logoutHandler)="logout()"
-    ></mfe-welcome>
+    ></ui-welcome>
   </div>`,
 })
 export class NxWelcomeComponent implements OnInit, OnDestroy {

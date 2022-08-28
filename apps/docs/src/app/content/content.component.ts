@@ -4,11 +4,11 @@ import { filter } from 'rxjs';
 
 @Component({
   selector: 'mfe-nx-welcome',
-  template: `<mfe-welcome
+  template: `<ui-welcome
     title="{{ title }}"
     bg="#3687f0"
     [hideContent]="true"
-  ></mfe-welcome>`,
+  ></ui-welcome>`,
   encapsulation: ViewEncapsulation.None,
 })
 export class ContentComponent implements OnInit {
