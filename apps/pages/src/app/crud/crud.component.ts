@@ -110,7 +110,7 @@ export class CrudComponent implements OnInit {
       if (this.product.id) {
         // @ts-ignore
         this.product.inventoryStatus = this.product.inventoryStatus.value
-          ? this.product.inventoryStatus.value
+          ? this.product.inventoryStatus?.value
           : this.product.inventoryStatus;
         this.products[this.findIndexById(this.product.id)] = this.product;
         this.messageService.add({
