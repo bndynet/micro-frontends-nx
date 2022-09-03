@@ -1,149 +1,156 @@
 .layout-topbar {
-    position: fixed;
-    height: 5rem;
-    z-index: 997;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 0 2rem;
-    background-color: var(--surface-card);
-    transition: left $transitionDuration;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08);
+  align-items: center;
+  background-color: var(--surface-card);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02), 0 0 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  height: 5rem;
+  left: 0;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  transition: left $transitionDuration;
+  width: 100%;
+  z-index: 997;
 
+  &.has-sidebar-toggle {
     .layout-topbar-logo {
-        display: flex;
-        align-items: center;
-        color: var(--surface-900);
-        font-size: 1.5rem;
-        font-weight: 500;
-        border-radius: 12px;
-
-        img {
-            height: 2.5rem;
-            margin-right: .5rem;
-        }
-
-        &:focus {
-            @include focused();
-        }
+      margin-right: 0;
     }
+  }
+
+  .layout-topbar-logo {
+    align-items: center;
+    border-radius: 12px;
+    color: var(--surface-900);
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 2rem;
+
+    img {
+      height: 2.5rem;
+      margin-right: 0.5rem;
+    }
+
+    &:focus {
+      @include focused();
+    }
+  }
+
+  .layout-topbar-button {
+    align-items: center;
+    border-radius: 50%;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    height: 3rem;
+    justify-content: center;
+    position: relative;
+    transition: background-color $transitionDuration;
+    width: 3rem;
+
+    &:hover {
+      background-color: var(--surface-hover);
+      color: var(--text-color);
+    }
+
+    &:focus {
+      @include focused();
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    span {
+      display: none;
+      font-size: 1rem;
+    }
+  }
+
+  .layout-menu-button {
+    margin-left: 2rem;
+    margin-right: 1rem;
+  }
+
+  .layout-topbar-menu-button {
+    display: none;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+
+  .layout-topbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0 0 0 auto;
+    padding: 0;
 
     .layout-topbar-button {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        color: var(--text-color-secondary);
-        border-radius: 50%;
-        width: 3rem;
-        height: 3rem;
-        cursor: pointer;
-        transition: background-color $transitionDuration;
-
-        &:hover {
-            color: var(--text-color);
-            background-color: var(--surface-hover);
-        }
-
-        &:focus {
-            @include focused();
-        }
-
-        i {
-            font-size: 1.5rem;
-        }
-
-        span {
-            font-size: 1rem;
-            display: none;
-        }
+      margin-left: 1rem;
     }
-
-    .layout-menu-button {
-        margin-left: 2rem;
-        margin-right: 1rem;
-    }
-
-    .layout-topbar-menu-button {
-        display: none;
-
-        i {
-            font-size: 1.25rem;
-        }
-    }
-
-    .layout-topbar-menu {
-        margin: 0 0 0 auto;
-        padding: 0;
-        list-style: none;
-        display: flex;
-
-        .layout-topbar-button {
-            margin-left: 1rem;
-        }
-    }
+  }
 }
 
 @media (max-width: 991px) {
-    .layout-topbar {
-        justify-content: space-between;
+  .layout-topbar {
+    justify-content: space-between;
 
-        .layout-topbar-logo {
-            width: auto;
-            order: 2;
-        }
-
-        .layout-menu-button {
-            margin-left: 0;
-            order: 1;
-        }
-
-        .layout-topbar-menu-button {
-            display: inline-flex;
-            margin-left: 0;
-            order: 3;
-        }
-
-        .layout-topbar-menu {
-            margin-left: 0;
-            position: absolute;
-            flex-direction: column;
-            background-color: var(--surface-overlay);
-            box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08);
-            border-radius: 12px;
-            padding: 1rem;
-            right: 2rem;
-            top: 5rem;
-            min-width: 15rem;
-            display: none;
-            -webkit-animation: scalein 0.15s linear;
-            animation: scalein 0.15s linear;
-
-            &.layout-topbar-menu-mobile-active {
-                display: block
-            }
-
-            .layout-topbar-button {
-                margin-left: 0;
-                display: flex;
-                width: 100%;
-                height: auto;
-                justify-content: flex-start;
-                border-radius: 12px;
-                padding: 1rem;
-
-                i {
-                    font-size: 1rem;
-                    margin-right: .5rem;
-                }
-
-                span {
-                    font-weight: medium;
-                    display: block;
-                }
-            }
-        }
+    .layout-topbar-logo {
+      order: 2;
+      width: auto;
     }
+
+    .layout-menu-button {
+      margin-left: 0;
+      order: 1;
+    }
+
+    .layout-topbar-menu-button {
+      display: inline-flex;
+      margin-left: 0;
+      order: 3;
+    }
+
+    .layout-topbar-menu {
+      animation: scalein 0.15s linear;
+      animation: scalein 0.15s linear;
+      background-color: var(--surface-overlay);
+      border-radius: 12px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02), 0 0 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.08);
+      display: none;
+      flex-direction: column;
+      margin-left: 0;
+      min-width: 15rem;
+      padding: 1rem;
+      position: absolute;
+      right: 2rem;
+      top: 5rem;
+
+      &.layout-topbar-menu-mobile-active {
+        display: block;
+      }
+
+      .layout-topbar-button {
+        border-radius: 12px;
+        display: flex;
+        height: auto;
+        justify-content: flex-start;
+        margin-left: 0;
+        padding: 1rem;
+        width: 100%;
+
+        i {
+          font-size: 1rem;
+          margin-right: 0.5rem;
+        }
+
+        span {
+          display: block;
+          font-weight: medium;
+        }
+      }
+    }
+  }
 }

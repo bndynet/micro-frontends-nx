@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuthState, LayoutService } from '@mfe/data';
 import { Store } from '@ngrx/store';
@@ -20,6 +20,8 @@ export class AppTopBarComponent implements OnInit {
   @ViewChild('topbarmenubutton') topbarMenuButton!: ElementRef;
 
   @ViewChild('topbarmenu') menu!: ElementRef;
+
+  @Input() showSidebarToggle?: boolean;
 
   constructor(
     private store: Store,

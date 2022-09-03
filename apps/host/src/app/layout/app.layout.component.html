@@ -1,5 +1,5 @@
 <div class="layout-wrapper" [ngClass]="containerClass">
-  <app-topbar></app-topbar>
+  <app-topbar [showSidebarToggle]="sidebar.isActivated"></app-topbar>
 
   <div class="layout-sidebar" [hidden]="!sidebar.isActivated">
     <router-outlet name="sidebar" #sidebar="outlet"></router-outlet>
