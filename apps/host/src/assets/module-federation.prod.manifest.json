@@ -1,0 +1,6 @@
+{
+    "login": "/remotes/login",
+    "pages": "/remotes/pages",
+    "docs": "/remotes/docs",
+    "shop": "/remotes/shop"
+}

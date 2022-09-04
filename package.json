@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve --devRemotes=pages,docs,shop,login",
+    "start": "nx serve host --devRemotes=pages,docs,shop,login",
     "build": "nx build",
     "lint": "nx run-many --all --target=lint",
     "prettier": "npx prettier --write './{apps,libs}/**/*.ts'",

@@ -12,7 +12,7 @@ const sharedLibraires = [
 
 module.exports = {
   name: 'host',
-  remotes: ['pages', 'docs', 'login', 'shop'],
+  remotes: [],
   // By default, all packages in package.json will be as the shared,
   // Here to override it.
   shared: (libName, defaultConfig) => {

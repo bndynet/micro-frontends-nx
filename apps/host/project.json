@@ -23,7 +23,7 @@
       },
       "configurations": {
         "production": {
-          "baseHref": "/mfe/",
+          "baseHref": "",
           "budgets": [
             {
               "type": "initial",

@@ -1,0 +1,6 @@
+{
+    "login": "http://localhost:4201",
+    "pages": "http://localhost:4202",
+    "docs": "http://localhost:4203",
+    "shop": "http://localhost:4204"
+}
