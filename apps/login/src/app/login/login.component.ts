@@ -25,7 +25,7 @@ import { map, Subject, takeUntil } from 'rxjs';
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 800px;
+        padding-top: 7rem;
       }
       :host ::ng-deep .p-password input {
         width: 100%;

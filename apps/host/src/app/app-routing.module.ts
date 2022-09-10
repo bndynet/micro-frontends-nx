@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '@mfe/data';
+import { NotfoundComponent } from '@mfe/ui';
 import { loadRemoteModule } from '@nrwl/angular/mf';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 
-const mfeRouting = [
+const subRouting = [
   {
     path: 'shop',
     loadChildren: () =>
@@ -23,11 +24,6 @@ const mfeRouting = [
       loadRemoteModule('pages', './Module').then((m) => m.RemoteEntryModule),
   },
   {
-    path: 'login',
-    loadChildren: () =>
-      loadRemoteModule('login', './Module').then((m) => m.RemoteEntryModule),
-  },
-  {
     path: '',
     component: NxWelcomeComponent,
   },
@@ -40,11 +36,17 @@ const mfeRouting = [
         {
           path: '',
           component: AppLayoutComponent,
-          children: mfeRouting,
+          children: subRouting,
         },
-        // ...mfeRouting,
-        // { path: 'pages/notfound', component: NotfoundComponent },
-        // { path: '**', redirectTo: 'pages/notfound' },
+        {
+          path: 'login',
+          loadChildren: () =>
+            loadRemoteModule('login', './Module').then(
+              (m) => m.RemoteEntryModule
+            ),
+        },
+        { path: 'notfound', component: NotfoundComponent },
+        { path: '**', redirectTo: 'notfound' },
       ],
       {
         scrollPositionRestoration: 'enabled',
