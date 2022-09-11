@@ -82,6 +82,7 @@ Visit [Nx Cloud](https://nx.app/) to learn more.
 ## Other useful commands
 
 ```shell
+nx g @nrwl/angular:remote todo --host=host
 nx g @nrwl/angular:app my-app
 nx g @nrwl/angular:component my-component --project=my-app
 nx g @nrwl/angular:lib ui
@@ -115,6 +116,8 @@ nx g @nrwl/angular:ngrx auth --module=libs/data/src/lib/data.module.ts --no-inte
 
 ### Apps in Host - apps/host/project.json
 
+The **implicitDependencies** node will determine which remotes are compiled by `npm run build` or `nx build`.
+
 ```json
 {
   "implicitDependencies": ["pages", "docs", "login", "shop"],
@@ -132,6 +135,8 @@ nx g @nrwl/angular:ngrx auth --module=libs/data/src/lib/data.module.ts --no-inte
 
 ### Build - apps/host/webpack.prod.config.js
 
+The following configurations about remotes have be moved to **apps/host/src/assets/module-federation.manifest.json** for supporting the dynamic federation.
+
 ```js
 const baseHref = '/mfe/';  // here need to sync with node `baseHref` of ./project.json
 module.exports = withModuleFederation({
@@ -144,3 +149,7 @@ module.exports = withModuleFederation({
   ],
 });
 ```
+
+## Others
+
+- **/build-info.json** to view the build infomations.
