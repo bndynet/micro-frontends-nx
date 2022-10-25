@@ -5,7 +5,7 @@
 
 var moduleMap = {
 	"./Module": () => {
-		return Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(531), __webpack_require__.e(294), __webpack_require__.e(86), __webpack_require__.e(776), __webpack_require__.e(358), __webpack_require__.e(190), __webpack_require__.e(654), __webpack_require__.e(592)]).then(() => (() => ((__webpack_require__(9204)))));
+		return Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(531), __webpack_require__.e(294), __webpack_require__.e(86), __webpack_require__.e(776), __webpack_require__.e(358), __webpack_require__.e(190), __webpack_require__.e(654), __webpack_require__.e(592)]).then(() => (() => ((__webpack_require__(555)))));
 	}
 };
 var get = (module, getScope) => {
@@ -100,7 +100,7 @@ __webpack_require__.d(exports, {
 /******/ 	// This function allow to reference async chunks
 /******/ 	__webpack_require__.u = (chunkId) => {
 /******/ 		// return url for filenames based on template
-/******/ 		return "" + (chunkId === 592 ? "common" : chunkId) + "." + {"6":"0c869636f4b81595","52":"370759a538bc8afa","86":"cce8aeaf94a831fa","111":"4d03cdaf1b2fcfd9","190":"4dbd33d2b32c4128","206":"5d9625b8dacd093a","209":"78103ab8f19c1a26","258":"908e3dd418a049ac","294":"68e29de9b219067f","340":"4c61c12e84c071a1","352":"8555717a9f04c2e7","358":"48f07d725e4b92f7","417":"a594bde2e60129e1","425":"2247f05cb673394e","481":"268382761f8d0efd","529":"a3f1bf4d1521a9c8","531":"5defc7fe352e3469","549":"1ba962f16b5166a0","555":"4f180684c41e0ba6","559":"8d75564203a2fbca","592":"2c112aec877f4bc3","595":"25fb10d5306a8c90","637":"293469caa4eeb0e9","650":"d898c0a5d8e5e575","654":"1d8d45d0e67e80dc","747":"2f6d28aa3a46bbcd","776":"7e3a1145b610d9df","793":"ea7459c2002d9fe7","805":"1c5f74d47a515625","806":"d03f18db4bdb5786","895":"3def172ec9107046","935":"fc5ffb8f86aa6fc4","944":"b916806ae93924ff","970":"daa26f0b0dcb6f1a","982":"8510ff5f05274861"}[chunkId] + ".js";
+/******/ 		return "" + (chunkId === 592 ? "common" : chunkId) + "." + {"6":"0c869636f4b81595","52":"3c39d466140872b8","86":"cce8aeaf94a831fa","111":"74b138f7144879f4","190":"4dbd33d2b32c4128","206":"5d9625b8dacd093a","209":"78103ab8f19c1a26","258":"908e3dd418a049ac","294":"68e29de9b219067f","340":"4c61c12e84c071a1","358":"48f07d725e4b92f7","417":"a594bde2e60129e1","425":"2247f05cb673394e","459":"9a29a04e78d76a5f","481":"268382761f8d0efd","529":"a3f1bf4d1521a9c8","531":"5defc7fe352e3469","549":"1ba962f16b5166a0","555":"4f180684c41e0ba6","559":"8d75564203a2fbca","592":"a7738c4683efe344","595":"25fb10d5306a8c90","637":"293469caa4eeb0e9","650":"d898c0a5d8e5e575","654":"1d8d45d0e67e80dc","747":"2f6d28aa3a46bbcd","776":"7e3a1145b610d9df","793":"ea7459c2002d9fe7","805":"1c5f74d47a515625","806":"d03f18db4bdb5786","895":"3def172ec9107046","935":"fc5ffb8f86aa6fc4","944":"b916806ae93924ff","963":"7b92ebc6b113b694","970":"daa26f0b0dcb6f1a","982":"8510ff5f05274861"}[chunkId] + ".js";
 /******/ 	};
 /******/ })();
 /******/ 
@@ -222,8 +222,8 @@ __webpack_require__.d(exports, {
 /******/ 				register("@angular/platform-browser", "14.2.6", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(481)]).then(() => (() => (__webpack_require__(1481))))));
 /******/ 				register("@angular/router", "14.2.6", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(209), __webpack_require__.e(806), __webpack_require__.e(793)]).then(() => (() => (__webpack_require__(4793))))));
 /******/ 				register("@auth0/auth0-angular", "1.11.0", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(209), __webpack_require__.e(294), __webpack_require__.e(595)]).then(() => (() => (__webpack_require__(595))))));
-/******/ 				register("@mfe/data", "0.0.0", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(531), __webpack_require__.e(294), __webpack_require__.e(776), __webpack_require__.e(935), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(9165))))));
-/******/ 				register("@mfe/ui", "0.0.0", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(190), __webpack_require__.e(352)]).then(() => (() => (__webpack_require__(9352))))));
+/******/ 				register("@mfe/data", "0.0.0", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(531), __webpack_require__.e(294), __webpack_require__.e(776), __webpack_require__.e(935), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(898))))));
+/******/ 				register("@mfe/ui", "0.0.0", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(209), __webpack_require__.e(294), __webpack_require__.e(459), __webpack_require__.e(190), __webpack_require__.e(963)]).then(() => (() => (__webpack_require__(6963))))));
 /******/ 				register("@ngrx/effects", "14.3.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(970), __webpack_require__.e(209), __webpack_require__.e(531), __webpack_require__.e(747)]).then(() => (() => (__webpack_require__(7747))))));
 /******/ 				register("@ngrx/store", "14.3.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(970), __webpack_require__.e(209), __webpack_require__.e(555)]).then(() => (() => (__webpack_require__(8555))))));
 /******/ 				register("primeng/api", "14.1.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(970), __webpack_require__.e(549), __webpack_require__.e(805)]).then(() => (() => (__webpack_require__(805))))));
@@ -231,7 +231,7 @@ __webpack_require__.d(exports, {
 /******/ 				register("primeng/checkbox", "14.1.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(549), __webpack_require__.e(86), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(1989))))));
 /******/ 				register("primeng/dom", "14.1.2", () => (__webpack_require__.e(258).then(() => (() => (__webpack_require__(9592))))));
 /******/ 				register("primeng/inputtext", "14.1.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(86), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(1740))))));
-/******/ 				register("primeng/password", "14.1.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(549), __webpack_require__.e(637), __webpack_require__.e(86), __webpack_require__.e(358), __webpack_require__.e(425)]).then(() => (() => (__webpack_require__(3425))))));
+/******/ 				register("primeng/password", "14.1.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(549), __webpack_require__.e(637), __webpack_require__.e(86), __webpack_require__.e(459), __webpack_require__.e(358), __webpack_require__.e(425)]).then(() => (() => (__webpack_require__(3425))))));
 /******/ 				register("primeng/ripple", "14.1.2", () => (Promise.all([__webpack_require__.e(944), __webpack_require__.e(417), __webpack_require__.e(637), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(1795))))));
 /******/ 				register("primeng/utils", "14.1.2", () => (__webpack_require__.e(982).then(() => (() => (__webpack_require__(982))))));
 /******/ 				register("rxjs/operators", "7.5.7", () => (Promise.all([__webpack_require__.e(52), __webpack_require__.e(559)]).then(() => (() => (__webpack_require__(7559))))));
@@ -422,18 +422,18 @@ __webpack_require__.d(exports, {
 /******/ 		6776: () => (loadStrictSingletonVersionCheckFallback("default", "@ngrx/effects", [1,14,2,0], () => (Promise.all([__webpack_require__.e(209), __webpack_require__.e(747)]).then(() => (() => (__webpack_require__(7747))))))),
 /******/ 		3902: () => (loadStrictSingletonVersionCheckFallback("default", "@angular/common/http", [2,14,2,0], () => (Promise.all([__webpack_require__.e(209), __webpack_require__.e(529)]).then(() => (() => (__webpack_require__(529))))))),
 /******/ 		2580: () => (loadStrictSingletonVersionCheckFallback("default", "@auth0/auth0-angular", [1,1,10,1], () => (Promise.all([__webpack_require__.e(209), __webpack_require__.e(595)]).then(() => (() => (__webpack_require__(595))))))),
-/******/ 		9190: () => (loadFallback("default", "@mfe/data", () => (Promise.all([__webpack_require__.e(970), __webpack_require__.e(531), __webpack_require__.e(294), __webpack_require__.e(776), __webpack_require__.e(935), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(9165))))))),
+/******/ 		459: () => (loadStrictSingletonVersionCheckFallback("default", "@angular/animations", [2,14,2,0], () => (__webpack_require__.e(340).then(() => (() => (__webpack_require__(7340))))))),
+/******/ 		9190: () => (loadFallback("default", "@mfe/data", () => (Promise.all([__webpack_require__.e(970), __webpack_require__.e(531), __webpack_require__.e(776), __webpack_require__.e(935), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(898))))))),
 /******/ 		7549: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/utils", [1,14,1,2], () => (__webpack_require__.e(982).then(() => (() => (__webpack_require__(982))))))),
 /******/ 		257: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/api", [1,14,1,2], () => (Promise.all([__webpack_require__.e(970), __webpack_require__.e(549), __webpack_require__.e(805)]).then(() => (() => (__webpack_require__(805))))))),
 /******/ 		6579: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/dom", [1,14,1,2], () => (__webpack_require__.e(258).then(() => (() => (__webpack_require__(9592))))))),
 /******/ 		9206: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/ripple", [1,14,1,2], () => (__webpack_require__.e(592).then(() => (() => (__webpack_require__(1795))))))),
 /******/ 		7086: () => (loadStrictSingletonVersionCheckFallback("default", "@angular/forms", [2,14,2,0], () => (Promise.all([__webpack_require__.e(970), __webpack_require__.e(209), __webpack_require__.e(6)]).then(() => (() => (__webpack_require__(4006))))))),
 /******/ 		2358: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/inputtext", [1,14,1,2], () => (__webpack_require__.e(592).then(() => (() => (__webpack_require__(1740))))))),
-/******/ 		459: () => (loadStrictSingletonVersionCheckFallback("default", "@angular/animations", [2,14,2,0], () => (__webpack_require__.e(340).then(() => (() => (__webpack_require__(7340))))))),
-/******/ 		2264: () => (loadFallback("default", "@mfe/ui", () => (__webpack_require__.e(352).then(() => (() => (__webpack_require__(9352))))))),
+/******/ 		2264: () => (loadFallback("default", "@mfe/ui", () => (Promise.all([__webpack_require__.e(209), __webpack_require__.e(459), __webpack_require__.e(963)]).then(() => (() => (__webpack_require__(6963))))))),
 /******/ 		1091: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/button", [1,14,1,2], () => (Promise.all([__webpack_require__.e(637), __webpack_require__.e(206), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(5593))))))),
 /******/ 		4772: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/checkbox", [1,14,1,2], () => (Promise.all([__webpack_require__.e(549), __webpack_require__.e(592)]).then(() => (() => (__webpack_require__(1989))))))),
-/******/ 		2270: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/password", [1,14,1,2], () => (Promise.all([__webpack_require__.e(549), __webpack_require__.e(637), __webpack_require__.e(425)]).then(() => (() => (__webpack_require__(3425)))))))
+/******/ 		2270: () => (loadStrictSingletonVersionCheckFallback("default", "primeng/password", [1,14,1,2], () => (Promise.all([__webpack_require__.e(549), __webpack_require__.e(637), __webpack_require__.e(459), __webpack_require__.e(425)]).then(() => (() => (__webpack_require__(3425)))))))
 /******/ 	};
 /******/ 	// no consumes in initial chunks
 /******/ 	var chunkMapping = {
@@ -458,7 +458,7 @@ __webpack_require__.d(exports, {
 /******/ 		"417": [
 /******/ 			417
 /******/ 		],
-/******/ 		"425": [
+/******/ 		"459": [
 /******/ 			459
 /******/ 		],
 /******/ 		"531": [
@@ -543,7 +543,7 @@ __webpack_require__.d(exports, {
 /******/ 				if(installedChunkData) {
 /******/ 					promises.push(installedChunkData[2]);
 /******/ 				} else {
-/******/ 					if(!/^(2(06|09|94)|9(35|44|70)|(77|8|80)6|190|358|417|531|549|637|654)$/.test(chunkId)) {
+/******/ 					if(!/^(2(06|09|94)|9(35|44|70)|(77|8|80)6|190|358|417|459|531|549|637|654)$/.test(chunkId)) {
 /******/ 						// setup Promise in chunk cache
 /******/ 						var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 						promises.push(installedChunkData[2] = promise);
